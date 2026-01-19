@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Service - خدمات تنظيف متخصصة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* الأساسيات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #00a8ff;
+            --secondary: #192a56;
+            --accent: #fbc531;
+            --light: #f8f9fa;
+            --dark: #2f3640;
+            --gray: #7f8fa6;
+            --transition: all 0.3s ease;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0097e6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 168, 255, 0.2);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: white;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #151f3d;
+            transform: translateY(-3px);
+        }
+        
+        /* الشريط العلوي */
+        .top-bar {
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .whatsapp-cta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #25d366;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        
+        .whatsapp-cta:hover {
+            background-color: #1da851;
+        }
+        
+        .top-contact {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .top-contact div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* الهيدر */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            font-weight: 600;
+            color: var(--dark);
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+        
+        /* الهيرو */
+        .hero {
+            background: linear-gradient(rgba(25, 42, 86, 0.9), rgba(25, 42, 86, 0.8)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        /* الخدمات */
+        .services {
+            background-color: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
+        }
+        
+        .service-content {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .service-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* لماذا نحن */
+        .why-us-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .why-us-img img {
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features-list {
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .feature-icon {
+            background-color: rgba(0, 168, 255, 0.1);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .feature-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+        
+        /* العروض */
+        .offers {
+            background-color: var(--light);
+        }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .offer-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .offer-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .offer-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .offer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .offer-content {
+            padding: 25px;
+        }
+        
+        .offer-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .offer-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+        
+        .offer-price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .offer-features {
+            text-align: right;
+            margin: 20px 0;
+        }
+        
+        .offer-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .offer-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* اتصل بنا */
+        .contact {
+            background-color: var(--light);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .contact-details {
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* الفوتر */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 80px 0 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            bottom: 0;
+            right: 0;
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+            padding-right: 5px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 0;
+            text-align: center;
+        }
+        
+        /* أزرار الواتساب */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #1da851;
+            transform: scale(1.1);
+        }
+        
+        /* التجاوب */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .top-contact {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 1001;
+                padding: 80px 30px 30px;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            nav li {
+                margin-bottom: 20px;
+            }
+            
+            .hero {
+                padding: 120px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.7rem;
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+        
+        /* أنيميشن بسيطة */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- زر الواتساب العائم -->
+    <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20الحصول%20على%20خدمات%20التنظيف%20من%20In%20Service" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <div class="container top-content">
+            <div class="top-contact">
+                <div>
+                    <i class="fas fa-phone-alt"></i>
+                    <span>0109-288-8626</span>
+                </div>
+                <div>
+                    <i class="fas fa-clock"></i>
+                    <span>أيام العمل: من الأحد إلى الخميس 8ص - 5م</span>
+                </div>
+            </div>
+            <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20الحصول%20على%20خدمات%20التنظيف%20من%20In%20Service" class="whatsapp-cta" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span>تواصل عبر واتساب</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- الهيدر -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-broom" style="font-size: 2.5rem; color: var(--primary);"></i>
+                <div class="logo-text">In <span>Service</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">الرئيسية</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#offers">العروض</a></li>
+                    <li><a href="#contact">اطلب خدمة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- الصفحة الرئيسية -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>نظافة مضمونة لجميع المساحات</h1>
+            <p>نقدم خدمات تنظيف متكاملة للشقق، الفلل، والمكاتب بأسعار تنافسية وجودة لا تضاهى. فريقنا المدرب يستخدم أحدث المعدات والمواد الصديقة للبيئة.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn btn-primary">استعرض خدماتنا</a>
+                <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20الحصول%20على%20خدمات%20التنظيف%20من%20In%20Service" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> تواصل الآن
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- الخدمات -->
+    <section id="services" class="services section">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا المتخصصة</h2>
+                <p>نقدم خدمات تنظيف شاملة تلبي جميع احتياجاتك السكنية والتجارية</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="تنظيف الشقق">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>تنظيف الشقق</h3>
+                        <p>نظافة شاملة لجميع أركان الشقة باستخدام مواد صديقة للبيئة وآمنة.</p>
+                        <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20طلب%20خدمة%20تنظيف%20الشقق%20من%20In%20Service" class="btn btn-primary" target="_blank">اطلب الخدمة</a>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="تنظيف الفلل">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-house-user"></i>
+                        </div>
+                        <h3>تنظيف الفيلا</h3>
+                        <p>خدمات تنظيف متكاملة للفيلا بجميع مساحاتها وأقسامها.</p>
+                        <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20طلب%20خدمة%20تنظيف%20الفلل%20من%20In%20Service" class="btn btn-primary" target="_blank">اطلب الخدمة</a>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="تنظيف المكاتب">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>تنظيف المكاتب</h3>
+                        <p>تنظيف وتعقيم المكاتب والشركات لبيئة عمل نظيفة ومنتجة.</p>
+                        <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20طلب%20خدمة%20تنظيف%20المكاتب%20من%20In%20Service" class="btn btn-primary" target="_blank">اطلب الخدمة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- من نحن -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>من نحن</h2>
+                <p>شركة In Service هي شركة متخصصة في خدمات التنظيف تأسست لتقديم أفضل الخدمات</p>
+            </div>
+            
+            <div class="why-us-content">
+                <div class="why-us-img fade-in">
+                    <img src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="خدمات التنظيف">
+                </div>
+                
+                <div class="why-us-text fade-in">
+                    <h3>لماذا تختار In Service؟</h3>
+                    <p>نحن نقدم خدمات تنظيف عالية الجودة مع التركيز على راحة العملاء ورضاهم. نستخدم أحدث المعدات والتقنيات في مجال التنظيف لضمان أفضل النتائج.</p>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>خدمات متخصصة</h4>
+                                <p>نحن متخصصون في تنظيف الشقق، الفلل، والمكاتب باحترافية عالية.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>مواد آمنة</h4>
+                                <p>نستخدم فقط مواد تنظيف آمنة وصديقة للبيئة ولا تضر بالصحة.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>دعم فني مباشر</h4>
+                                <p>تواصل معنا مباشرة على الواتساب للحصول على خدمة سريعة.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- العروض -->
+    <section id="offers" class="offers section">
+        <div class="container">
+            <div class="section-title">
+                <h2>عروضنا الخاصة</h2>
+                <p>استفد من عروضنا المميزة بأسعار تنافسية وخدمات مضمونة</p>
+            </div>
+            
+            <div class="offers-grid">
+                <div class="offer-card fade-in">
+                    <div class="offer-badge">الأكثر طلباً</div>
+                    <div class="offer-img">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=60" alt="تنظيف الشقق">
+                    </div>
+                    <div class="offer-content">
+                        <h3>باقة تنظيف الشقق</h3>
+                        <p>تنظيف كامل للشقة يشمل جميع الغرف والأركان</p>
+                        <div class="offer-price">300 <span>جنية/جلسة</span></div>
+                        <ul class="offer-features">
+                            <li>تنظيف جميع الغرف</li>
+                            <li>تنظيف المطابخ والحمامات</li>
+                            <li>تعقيم الأسطح</li>
+                            <li>تنظيف الزجاج والنوافذ</li>
+                        </ul>
+                        <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20طلب%20باقة%20تنظيف%20الشقق%20من%20In%20Service" class="btn btn-primary" target="_blank">اطلب عبر واتساب</a>
+                    </div>
+                </div>
+                
+                <div class="offer-card fade-in">
+                    <div class="offer-badge">عرض موسمي</div>
+                    <div class="offer-img">
+                        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=60" alt="تنظيف الفلل">
+                    </div>
+                    <div class="offer-content">
+                        <h3>باقة تنظيف الفلا</h3>
+                        <p>تنظيف شامل للفيلا بجميع طوابقها وأقسامها</p>
+                        <div class="offer-price">500 <span>جنية/جلسة</span></div>
+                        <ul class="offer-features">
+                            <li>تنظيف جميع الطوابق</li>
+                            <li>تنظيف الحديقة والمساحات الخارجية</li>
+                            <li>تعقيم جميع الأسطح</li>
+                            <li>تنظيف المسابح (إن وجدت)</li>
+                        </ul>
+                        <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20طلب%20باقة%20تنظيف%20الفلل%20من%20In%20Service" class="btn btn-primary" target="_blank">اطلب عبر واتساب</a>
+                    </div>
+                </div>
+                
+                <div class="offer-card fade-in">
+                    <div class="offer-badge">عرض خاص</div>
+                    <div class="offer-img">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=60" alt="تنظيف المكاتب">
+                    </div>
+                    <div class="offer-content">
+                        <h3>باقة تنظيف المكاتب</h3>
+                        <p>تنظيف وتعقيم المكاتب والشركات</p>
+                        <div class="offer-price">700 <span>جنية/شهرياً</span></div>
+                        <ul class="offer-features">
+                            <li>تنظيف يومي للمكاتب</li>
+                            <li>تعقيم الأسطح والمكاتب</li>
+                            <li>تنظيف الحمامات</li>
+                            <li>إزالة القمامة والتخلص منها</li>
+                        </ul>
+                        <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20طلب%20باقة%20تنظيف%20المكاتب%20من%20In%20Service" class="btn btn-primary" target="_blank">اطلب عبر واتساب</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- اتصل بنا -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-title">
+                <h2>اطلب خدمة التنظيف</h2>
+                <p>تواصل معنا الآن للحصول على خدمة تنظيف متميزة</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info fade-in">
+                    <h3>تواصل مباشرة مع In Service</h3>
+                    <p>نحن هنا لمساعدتك في أي استفسار أو لتنظيم زيارة فريقنا لموقعك. تواصل معنا مباشرة على الواتساب للحصول على خدمة سريعة.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>واتساب مباشر</h4>
+                                <p>0109-288-8626</p>
+                                <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20الحصول%20على%20خدمات%20التنظيف%20من%20In%20Service" class="btn btn-whatsapp" style="margin-top: 10px;" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> تواصل الآن
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>الهاتف</h4>
+                                <p>0109-288-8626</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>ساعات العمل</h4>
+                                <p>الأحد - الخميس: 8ص - 5م<br>الجمعة والسبت: حسب الطلب</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <h3>أرسل طلبك على الواتساب</h3>
+                    <p>املأ النموذج وسيتم إرساله مباشرة إلى واتساب In Service</p>
+                    
+                    <form id="whatsappForm">
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل *</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف *</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="serviceType">نوع الخدمة المطلوبة *</label>
+                            <select id="serviceType" class="form-control" required>
+                                <option value="">اختر الخدمة</option>
+                                <option value="شقة">تنظيف الشقق</option>
+                                <option value="فيلا">تنظيف الفيلا</option>
+                                <option value="مكتب">تنظيف المكاتب</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="area">المساحة التقريبية (م²)</label>
+                            <input type="text" id="area" class="form-control" placeholder="مثال: 120 متر مربع">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">تفاصيل إضافية</label>
+                            <textarea id="message" class="form-control" placeholder="أخبرنا عن احتياجاتك الخاصة..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-whatsapp" style="width: 100%;">
+                            <i class="fab fa-whatsapp"></i> أرسل الطلب على واتساب
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>In Service</h3>
+                    <p>شركة متخصصة في خدمات التنظيف للشقق، الفلل، والمكاتب. نقدم حلولاً متكاملة بجودة عالية وأسعار مناسبة.</p>
+                    <a href="https://wa.me/201092888626?text=مرحباً%20أريد%20الحصول%20على%20خدمات%20التنظيف%20من%20In%20Service" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> تواصل معنا
+                    </a>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-left"></i> الخدمات</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                        <li><a href="#offers"><i class="fas fa-chevron-left"></i> العروض</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-left"></i> اطــلب خدمة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/201092888626?text=مرحباً%20أريد%20طلب%20خدمة%20تنظيف%20الشقق%20من%20In%20Service" target="_blank"><i class="fas fa-chevron-left"></i> تنظيف الشقق</a></li>
+                        <li><a href="https://wa.me/201092888626?text=مرحباً%20أريد%20طلب%20خدمة%20تنظيف%20الفلل%20من%20In%20Service" target="_blank"><i class="fas fa-chevron-left"></i> تنظيف الفلل</a></li>
+                        <li><a href="https://wa.me/201092888626?text=مرحباً%20أريد%20طلب%20خدمة%20تنظيف%20المكاتب%20من%20In%20Service" target="_blank"><i class="fas fa-chevron-left"></i> تنظيف المكاتب</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/201092888626" target="_blank"><i class="fab fa-whatsapp"></i> 0109-288-8626</a></li>
+                        <li><a href="tel:01092888626"><i class="fas fa-phone-alt"></i> 0109-288-8626</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> الأحد - الخميس: 8ص - 5م</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 In Service. جميع الحقوق محفوظة. | للتواصل: 0109-288-8626</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // تفعيل القائمة المتنقلة
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+            this.innerHTML = this.innerHTML.includes('bars') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('#mainNav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mainNav').classList.remove('active');
+                document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // تفعيل التمرير السلس
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // إرسال نموذج الواتساب
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // جمع بيانات النموذج
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const serviceType = document.getElementById('serviceType').value;
+            const area = document.getElementById('area').value;
+            const message = document.getElementById('message').value;
+            
+            // بناء رسالة الواتساب
+            let whatsappMessage = `مرحباً، أريد طلب خدمة تنظيف من In Service%0A%0A`;
+            whatsappMessage += `*الاسم:* ${name}%0A`;
+            whatsappMessage += `*رقم الهاتف:* ${phone}%0A`;
+            whatsappMessage += `*نوع الخدمة:* ${serviceType}%0A`;
+            
+            if(area) {
+                whatsappMessage += `*المساحة التقريبية:* ${area} م²%0A`;
+            }
+            
+            if(message) {
+                whatsappMessage += `*تفاصيل إضافية:* ${message}%0A`;
+            }
+            
+            whatsappMessage += `%0Aأرجو التواصل معي للتفاصيل النهائية.`;
+            
+            // فتح رابط الواتساب
+            const whatsappURL = `https://wa.me/201092888626?text=${whatsappMessage}`;
+            window.open(whatsappURL, '_blank');
+            
+            // إظهار رسالة تأكيد
+            alert('سيتم فتح تطبيق الواتساب لإرسال طلبك. إذا لم يفتح تلقائياً، يمكنك نسخ رقم 01092888626 وإرسال الرسالة يدوياً.');
+            
+            // إعادة تعيين النموذج
+            this.reset();
+        });
+        
+        // إضافة تأثير الظهور عند التمرير
+        function checkVisibility() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if(position.top < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // تفعيل تأثير الظهور عند التمرير
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility);
+        
+        // تحديث القائمة النشطة أثناء التمرير
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#mainNav a');
+            
+            let currentSectionId = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                
+                if(window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+    </script>
+</body>
+</html>
